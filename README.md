@@ -19,9 +19,6 @@ A comprehensive Django REST Framework backend system for healthcare management w
 - **Django REST Framework 3.14.0**: API framework
 - **djangorestframework-simplejwt 5.3.0**: JWT authentication
 - **PostgreSQL**: Database
-- **psycopg2-binary**: PostgreSQL adapter
-- **python-decouple**: Environment variable management
-- **django-cors-headers**: CORS support
 
 ## Installation and Setup
 
