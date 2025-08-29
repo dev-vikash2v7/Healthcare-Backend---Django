@@ -30,7 +30,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
     last_name = serializers.CharField(source='user.last_name', read_only=True)
 
     class Meta:
-        model = UserProfile
+        # model = UserProfile
         fields = ('id', 'username', 'email', 'first_name', 'last_name', 'phone_number', 'address', 'date_of_birth', 'created_at', 'updated_at')
 
 
