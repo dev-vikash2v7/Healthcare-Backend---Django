@@ -19,9 +19,20 @@ class UserProfile(models.Model):
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        UserProfile.objects.create(user=instance)
+        try:
+            UserProfile.objects.create(user=instance)
+        except Exception:
+            # If UserProfile table doesn't exist yet, skip creation
+            pass
 
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
-    instance.userprofile.save()
+    try:
+        instance.userprofile.save()
+    except UserProfile.DoesNotExist:
+        # Create UserProfile if it doesn't exist
+        UserProfile.objects.create(user=instance)
+    except Exception:
+        # If UserProfile table doesn't exist yet, skip
+        pass

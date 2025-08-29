@@ -34,4 +34,8 @@ class UserProfileView(generics.RetrieveUpdateAPIView):
     serializer_class = UserProfileSerializer
 
     def get_object(self):
-        return self.request.user.userprofile
+        try:
+            return self.request.user.userprofile
+        except UserProfile.DoesNotExist:
+            # Create UserProfile if it doesn't exist
+            return UserProfile.objects.create(user=self.request.user)
